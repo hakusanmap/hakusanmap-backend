@@ -1,18 +1,28 @@
+
 import os
 
+class SystemConfig:
 
-class DevelopmentConfig:
-
+  # sqlalchemy.create_engine(
+    # mysql_str = sqlalchemy.engine.url.URL(
+    #     drivername='mysql+pymysql',
+    #     username="root",
+    #     password="root",
+    #     database="hakusan-map",
+    #     query={
+    #         'unix_socket': '/usr/local/mysql5/mysqld.sock'
+    #     }
+    # )
+# )
   # SQLAlchemy
-  SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://{user}:{password}@{host}/{database}?charset=utf8'.format(
-    **{
-      'user': os.getenv('DB_USER', 'root'),
-      'password': os.getenv('DB_PASSWORD', 'pass'),
-      'host': os.getenv('DB_HOST', 'db'),
-      'database': os.getenv('DB_DATABASE', 'test'),
-    })
+  SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://{user}:{password}@{host}:{port}/{database}?unix_socket=/var/lib/mysql/mysql.sock'.format(**{
+      'user': 'root',
+      'password': 'root',
+      'host': '127.0.0.1',
+      'port': '8889',
+      'database': 'hakusan-map'
+  })
   SQLALCHEMY_TRACK_MODIFICATIONS = False
   SQLALCHEMY_ECHO = False
 
-
-Config = DevelopmentConfig
+Config = SystemConfig

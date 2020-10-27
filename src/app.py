@@ -4,7 +4,7 @@ from flask_restful import Api
 
 from src.database import init_db
 
-from src.apis.test import Users,UserId
+from src.apis.user import Users, UserId
 
 
 def create_app():
@@ -15,8 +15,8 @@ def create_app():
   init_db(app)
 
   api = Api(app)
-  api.add_resource(Users, '/test')
-  api.add_resource(UserId, '/test/<id>')
+  api.add_resource(Users, '/users')
+  api.add_resource(UserId, '/user/<id>')
 
   return app
 
