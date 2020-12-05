@@ -70,49 +70,49 @@ app.get('/user/delete/:id([0-9]+)', userDeleteId)
 /** ユーザの編集 */
 app.post('/user/edit/:id([0-9]+)', userEditId)
 
-/** ユーザの一覧 */
+/** 投稿の一覧 */
 app.get('/posts', posts)
 
-/** idユーザの閲覧 */
+/** 投稿ごとの閲覧 */
 app.get('/post/:id([0-9]+)', postId)
 
-/** ユーザの作成 */
+/** 投稿の作成 */
 app.post('/post/create', postCreate)
 
-/** ユーザの削除 */
+/** 投稿の削除 */
 app.get('/post/delete/:id([0-9]+)', postDeleteId)
 
-/** ユーザの編集 */
+/** 投稿の編集 */
 app.post('/post/edit/:id([0-9]+)', postEditId)
 
-/** ユーザの一覧 */
+/** 画像の一覧 */
 app.get('/images', images)
 
-/** idユーザの閲覧 */
+/** 画像ごとの閲覧 */
 app.get('/image/:id([0-9]+)', imageId)
 
-/** ユーザの作成 */
+/** 画像の作成 */
 app.post('/image/create', imageCreate)
 
-/** ユーザの削除 */
+/** 画像の削除 */
 app.get('/image/delete/:id([0-9]+)', imageDeleteId)
 
-/** ユーザの編集 */
+/** 画像の編集 */
 app.post('/image/edit/:id([0-9]+)', imageEditId)
 
-/** ユーザの一覧 */
+/** 位置情報の一覧 */
 app.get('/locations', locations)
 
-/** idユーザの閲覧 */
+/** 位置情報ごとの閲覧 */
 app.get('/location/:id([0-9]+)', locationId)
 
-/** ユーザの作成 */
+/** 位置情報の作成 */
 app.post('/location/create', locationCreate)
 
-/** ユーザの削除 */
+/** 位置情報の削除 */
 app.get('/location/delete/:id([0-9]+)', locationDeleteId)
 
-/** ユーザの編集 */
+/** 位置情報の編集 */
 app.post('/location/edit/:id([0-9]+)', locationEditId)
 
 

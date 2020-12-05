@@ -25,21 +25,27 @@ JWT_SECRET="<jwtの秘密鍵>"
 ----|----|----|----|----
 | 動作確認 | / | GET | 不要 | 接続テスト用 |
 | ログイン | /login | POST | 不要 | email,passwordを送るとログイン情報を送る |
-| ユーザ情報 | /user | GET | 必須 | 自分の情報を返す |
-| ユーザ情報 | /user/:id | GET | 必須(adminのみ) | ユーザ一人の情報を返す |
-| ユーザ一覧 | /users | GET | 必須(adminのみ) | 全ユーザの情報を返す |
-| ユーザ作成 | /user/create | POST | 必須(adminのみ) | name,email,password,roleを送ると登録される |
-| ユーザ削除 | /user/delete/:id | GET | 必須(adminのみ) | id(ユーザid)を送るとそのユーザが削除されます |
-| ユーザ編集 | /user/edit/:id | POST | 必須(adminのみ) | id(ユーザid)で指定したユーザのユーザ情報を変更できます |
-| 場所一覧 | /spots | GET | 不要 | 場所のリストを返す |
-| 場所作成 | /spot/create | POST | 必須(adminのみ) | name,bleUuid,bnbSub,latitude,longitude,descriptionを用いて場所を登録 |
-| 場所削除 | /spot/delete/:id | GET | 必須(adminのみ) | id(場所id)を送るとその場所が削除される |
-| 場所編集 | /spot/edit/:id | POST | 必須(adminのみ) | id(場所id)で指定した場所の情報を変更できる |
-| 頼みごと一覧 | /requests | GET | 不要 | 頼みごとの一覧を表示 |
-| ユーザごとの頼みごと | /request/:id | GET | 必須 | ユーザごとの頼みごとを表示 |
-| 頼みごと作成 | /request/create | POST | 必須 | userid,informationを送ると登録される |
-| 頼みごと削除 | /request/delete/:id | GET | 必須 | id(頼みごとid)を送るとその頼みごとが削除される |
-| 頼みごと編集 | /request/edit/:id | POST | 必須 | id(頼みごとid)を送るとその頼みごとが変更できる |
+| ユーザ情報 | /user | GET | 不要 | 自分の情報を返す |
+| ユーザ情報 | /user/:id | GET | 不要 | ユーザ一人の情報を返す |
+| ユーザ一覧 | /users | GET | 不要 | 全ユーザの情報を返す |
+| ユーザ作成 | /user/create | POST | 不要 | name,email,password,roleを送ると登録される |
+| ユーザ削除 | /user/delete/:id | GET | 不要 | id(ユーザid)を送るとそのユーザが削除されます |
+| ユーザ編集 | /user/edit/:id | POST | 不要 | id(ユーザid)で指定したユーザのユーザ情報を変更できます |
+| 投稿一覧 | /posts | GET | 不要 | 投稿のリストを返す |
+| 投稿ごとの閲覧 | /post/:id | GET | 不要 | ユーザ一人の情報を返す |
+| 投稿の作成 | /post/create | POST | 不要 | name,user_id,type,img_id,location_idを送ると登録される |
+| 投稿の削除 | /post/delete/:id | GET | 不要 | id(投稿のid)を送るとその投稿が削除されます |
+| 投稿の編集 | /post/edit/:id | POST | 不要 | id(投稿id)で指定した投稿の情報を変更できます |
+| 画像一覧 | /images | GET | 不要 | 画像のリストを返す |
+| 画像ごとの閲覧 | /image/:id | GET | 不要 | 画像ごとの情報を返す |
+| 画像の作成 | /image/create | POST | 不要 | nameを送ると登録される |
+| 画像の削除 | /image/delete/:id | GET | 不要 | id(画像のid)を送るとその投稿が削除されます |
+| 画像の編集 | /image/edit/:id | POST | 不要 | id(画像id)で指定した画像の情報を変更できます |
+| 位置情報一覧 | /locations | GET | 不要 | 位置情報のリストを返す |
+| 位置情報ごとの閲覧 | /location/:id | GET | 不要 | 位置情報ごとの情報を返す |
+| 位置情報の作成 | /location/create | POST | 不要 | nameを送ると登録される |
+| 位置情報の削除 | /location/delete/:id | GET | 不要 | id(位置情報のid)を送るとその位置情報が削除されます |
+| 位置情報の編集 | /location/edit/:id | POST | 不要 | id(位置情報id)で指定した位置情報の情報を変更できます |
 
 ## ログインの流れ
 1. 白峰のサイトにアクセス
@@ -67,25 +73,32 @@ JWT_SECRET="<jwtの秘密鍵>"
 | createdAt | 生成時間 | datetime | NO |
 | updatedAt | 変更時間 | datetime | NO |
 
-### spots
+### posts
 | 名前 | 機能 | 型 | Null許容 | 
 ----|----|----|----
 | id | 固有のキー | int(11) | NO |
-| name | 場所名 | varchar(255) | NO |
-| bleUuid | BLEゲートウェイのUUID | varchar(255) | YES |
-| bnbSub | BNB+のsub | tinyint(1) | NO |
-| latitude | 緯度 | float | YES |
-| longitude | 経度 | float | YES |
-| description | 場所について | text | YES | 
+| name | 投稿されたものの名前 | text | YES |
+| user_id | 投稿したユーザのID | int(11) | NO |
+| type | 投稿の種類 | enum('animal', 'plant', 'disaster') | NO |
+| img_id | 投稿された画像 | int(11) | NO |
+| location_id | 投稿された場所 | int(11) | NO |
 | createdAt | 生成時間 | datetime | NO |
 | updatedAt | 変更時間 | datetime | NO |
 
-### request
+### images
 | 名前 | 機能 | 型 | Null許容 | 
 ----|----|----|----
 | id | 固有のキー | int(11) | NO |
-| userId | ユーザのID | int(11) | NO |
-| information | 説明 | text | NO |
+| name | 画像の名前 | text | YES |
+| createdAt | 生成時間 | datetime | NO |
+| updatedAt | 変更時間 | datetime | NO |
+
+### locations
+| 名前 | 機能 | 型 | Null許容 | 
+----|----|----|----
+| id | 固有のキー | int(11) | NO |
+| latitude | 緯度 | float | YES |
+| longitude | 経度 | float | YES |
 | createdAt | 生成時間 | datetime | NO |
 | updatedAt | 変更時間 | datetime | NO |
 
