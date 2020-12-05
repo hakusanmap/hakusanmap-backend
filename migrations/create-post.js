@@ -9,6 +9,12 @@ module.exports = {
         type: Sequelize.INTEGER,
         comment: '投稿の固有のID'
       },
+      name: {
+        allowNull: true,
+        type: Sequelize.TEXT,
+        default: null,
+        comment: '投稿された物の名前'
+      },
       user_id: {
         allowNull: false,
         type: Sequelize.INTEGER,
@@ -19,12 +25,6 @@ module.exports = {
         type: Sequelize.ENUM,
         values: ['animal', 'plant', 'disaster'],
         comment: '投稿の種類(動物,植物,災害)'
-      },
-      name: {
-        allowNull: true,
-        type: Sequelize.TEXT,
-        default: null,
-        comment: '投稿された物の名前'
       },
       img_id: {
         allowNull: false,

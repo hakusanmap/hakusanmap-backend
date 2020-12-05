@@ -9,12 +9,6 @@ module.exports = {
         type: Sequelize.INTEGER,
         comment: '場所の固有のID'
       },
-      name: {
-        allowNull: true,
-        type: Sequelize.TEXT,
-        default: null,
-        comment: '画像の名前'
-      },
       latitude: {
         type: Sequelize.FLOAT,
         default: 0,
